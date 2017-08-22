@@ -1,0 +1,15 @@
+E:\Work\merlinstatalign\merlinstatalign\bin\Debug\merlinstatalign.exe.config
+E:\Work\merlinstatalign\merlinstatalign\bin\Debug\merlinstatalign.exe
+E:\Work\merlinstatalign\merlinstatalign\bin\Debug\merlinstatalign.pdb
+E:\Work\merlinstatalign\merlinstatalign\obj\Debug\merlinstatalign.csprojResolveAssemblyReference.cache
+E:\Work\merlinstatalign\merlinstatalign\obj\Debug\merlinstatalign.exe
+E:\Work\merlinstatalign\merlinstatalign\obj\Debug\merlinstatalign.pdb
+C:\work\merlin\DataforSingsing\merlinstatalign\merlinstatalign\bin\Debug\merlinstatalign.exe.config
+C:\work\merlin\DataforSingsing\merlinstatalign\merlinstatalign\obj\Debug\merlinstatalign.exe
+C:\work\merlin\DataforSingsing\merlinstatalign\merlinstatalign\obj\Debug\merlinstatalign.pdb
+C:\work\merlin\DataforSingsing\merlinstatalign\merlinstatalign\bin\Debug\merlinstatalign.exe
+C:\work\merlin\DataforSingsing\merlinstatalign\merlinstatalign\bin\Debug\merlinstatalign.pdb
+C:\work\merlin\DataforSingsing\merlinstatalign\merlinstatalign\obj\Debug\merlinstatalign.csprojResolveAssemblyReference.cache
+\\jidin-work\Work\MerlinIntegration\prototype\merlinstatalign\merlinstatalign\bin\Debug\merlinstatalign.exe.config
+\\jidin-work\Work\MerlinIntegration\prototype\merlinstatalign\merlinstatalign\obj\Debug\merlinstatalign.exe
+\\jidin-work\Work\MerlinIntegration\prototype\merlinstatalign\merlinstatalign\obj\Debug\merlinstatalign.pdb

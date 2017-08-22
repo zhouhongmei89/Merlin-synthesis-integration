@@ -1,0 +1,11 @@
+C:\work\merlin\DataforSingsing\merlinstatalign\merlinstatalign\bin\Release\merlinstatalign.exe.config
+C:\work\merlin\DataforSingsing\merlinstatalign\merlinstatalign\bin\Release\merlinstatalign.exe
+C:\work\merlin\DataforSingsing\merlinstatalign\merlinstatalign\bin\Release\merlinstatalign.pdb
+C:\work\merlin\DataforSingsing\merlinstatalign\merlinstatalign\obj\Release\merlinstatalign.exe
+C:\work\merlin\DataforSingsing\merlinstatalign\merlinstatalign\obj\Release\merlinstatalign.pdb
+\\jidin-work\Work\MerlinIntegration\prototype\merlinstatalign\merlinstatalign\bin\Release\merlinstatalign.exe.config
+\\jidin-work\Work\MerlinIntegration\prototype\merlinstatalign\merlinstatalign\obj\Release\merlinstatalign.exe
+\\jidin-work\Work\MerlinIntegration\prototype\merlinstatalign\merlinstatalign\obj\Release\merlinstatalign.pdb
+\\jidin-work\Work\MerlinIntegration\prototype\merlinstatalign\merlinstatalign\bin\Release\merlinstatalign.exe
+\\jidin-work\Work\MerlinIntegration\prototype\merlinstatalign\merlinstatalign\bin\Release\merlinstatalign.pdb
+\\jidin-work\Work\MerlinIntegration\prototype\merlinstatalign\merlinstatalign\obj\Release\merlinstatalign.csprojResolveAssemblyReference.cache

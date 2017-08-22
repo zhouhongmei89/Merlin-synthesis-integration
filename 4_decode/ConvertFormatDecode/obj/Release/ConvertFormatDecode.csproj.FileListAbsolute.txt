@@ -1,0 +1,1 @@
+\\jidin-work\Work\MerlinIntegration\prototype\ConvertFormatDecode\ConvertFormatDecode\obj\Release\ConvertFormatDecode.csprojResolveAssemblyReference.cache
