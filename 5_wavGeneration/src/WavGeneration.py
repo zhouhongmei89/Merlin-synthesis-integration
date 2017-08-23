@@ -155,8 +155,6 @@ def main_function(cfg):
 
     for i in os.listdir(cfg.in_lf0_dir):
         if os.path.splitext(i)[1] == '.lf0':
-            given_lf0 = os.path.join(cfg.in_lf0_dir,i)
-            print(given_lf0)
             run_process('{x2x} +fa < {bin} > {asc}'
                         .format(x2x=cfg.SPTK['X2X'], bin=os.path.join(cfg.in_lf0_dir,i), asc=os.path.join(given_lf0_folder, os.path.splitext(i)[0] + '.lf0a')))
 
