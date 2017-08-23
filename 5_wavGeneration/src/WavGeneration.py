@@ -14,6 +14,7 @@ import numpy
 import numpy.distutils.__config__
 
 from Replace_f0 import replace_f0
+from getf0 import get_f0_label
 from utils.providers import ListDataProvider
 from frontend.label_normalisation import HTSLabelNormalisation, XMLLabelNormalisation
 from frontend.silence_remover import SilenceRemover
@@ -154,6 +155,8 @@ def main_function(cfg):
 
     for i in os.listdir(cfg.in_lf0_dir):
         if os.path.splitext(i)[1] == '.lf0':
+            given_lf0 = os.path.join(cfg.in_lf0_dir,i)
+            print(given_lf0)
             run_process('{x2x} +fa < {bin} > {asc}'
                         .format(x2x=cfg.SPTK['X2X'], bin=os.path.join(cfg.in_lf0_dir,i), asc=os.path.join(given_lf0_folder, os.path.splitext(i)[0] + '.lf0a')))
 
@@ -165,6 +168,14 @@ def main_function(cfg):
 
     replace_f0(given_lf0_folder, predicted_lf0_folder, output_lf0_folder)
 
+    f0_label_folder = os.path.join(gen_dir,'f0_label')
+    if not os.path.exists(f0_label_folder):
+        os.mkdir(f0_label_folder)
+    for i in gen_file_id_list:
+        given_lf0_file_path = os.path.join(output_lf0_folder, i + '.lf0a')
+        f0_label_file_path = os.path.join(f0_label_folder, i + '.lab')
+        get_f0_label(cfg.f0_question_set,cfg.f0_level,given_lf0_file_path,f0_label_file_path)
+	
     for i in os.listdir(output_lf0_folder):
         if os.path.splitext(i)[1] == '.lf0a':
             run_process('{x2x} +af < {asc} > {bin}'

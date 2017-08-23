@@ -691,7 +691,7 @@ class HTSLabelNormalisation(LabelNormalisation):
             for iq in xrange(len(current_question_list)):
                 current_compiled = current_question_list[iq]
                 
-                ms = current_compiled.search(label)
+                ms = current_compiled.match(label)
                 if ms is not None:
                     binary_flag = 1
                     break
@@ -800,12 +800,15 @@ class HTSLabelNormalisation(LabelNormalisation):
         """
         
         ## handle HTK wildcards (and lack of them) at ends of label:
+        """
         if '*' in question:
             if not question.startswith('*'):
                 question = '\A' + question
             if not question.endswith('*'):
                 question = question + '\Z'
         question = question.strip('*')
+        """
+        question = question.strip('"')
         question = re.escape(question)
         ## convert remaining HTK wildcards * and ? to equivalent regex:
         question = question.replace('\\*', '.*')

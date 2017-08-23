@@ -165,6 +165,8 @@ class configuration(object):
 
             ('file_id_scp'       , os.path.join(self.work_dir, 'data/file_id_list.scp')    , 'Paths', 'file_id_list'),
             ('test_id_scp'       , os.path.join(self.work_dir, 'data/test_id_list.scp')    , 'Paths', 'test_id_list'),
+            ('f0_level'          , os.path.join(self.work_dir, 'data/f0_level.txt')        , 'Paths',  'f0_level'),
+            ('f0_question_set'   , os.path.join(self.work_dir, 'data/f0_question_set.txt') , 'Paths',  'f0_question_set'),
 
             ('GV_dir'       , os.path.join(self.work_dir, 'data/GV' )  , 'Paths', 'GV_dir'),
 
