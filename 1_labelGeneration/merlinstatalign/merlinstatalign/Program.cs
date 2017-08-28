@@ -305,18 +305,19 @@ namespace merlinstatalign
                 string match = pattern.Match(stateOriginalArray[i * 5]).Value;
                 string key = Regex.Replace(match, "[-+]", "");
                 //key = key.ToLower();
+                string retemp = tmp[1] == "sil" ? "SIL":tmp[1];
                 if (tmp[1] != key.ToLower())
                 {
-                    string replace = "-" + tmp[1] + "+";
+                    string replace = "-" + retemp + "+";
                     stateOriginalArray[i * 5] = Regex.Replace(stateOriginalArray[i * 5], match, replace);
                     stateOriginalArray[i * 5 + 1] = Regex.Replace(stateOriginalArray[i * 5 + 1], match, replace);
                     stateOriginalArray[i * 5 + 2] = Regex.Replace(stateOriginalArray[i * 5 + 2], match, replace);
                     stateOriginalArray[i * 5 + 3] = Regex.Replace(stateOriginalArray[i * 5 + 3], match, replace);
                     stateOriginalArray[i * 5 + 4] = Regex.Replace(stateOriginalArray[i * 5 + 4], match, replace);
                 }
-                else if (i != 0)
+                if (i != 0)
                   {
-                    string replace = @"+" + tmp[1] + @"+";
+                    string replace = @"+" + retemp + @"+";
                     //get last 5lines +phone+
                     string keylast = Regex.Match(stateOriginalArray[(i - 1) * 5], @"(?<=\+)\w+(?=\+)", RegexOptions.IgnoreCase).Value;                     
                     if(tmp[1]!= keylast.ToLower())
@@ -331,7 +332,7 @@ namespace merlinstatalign
 
                     if (i < alignedPhoneList.Count - 1)
                     {
-                        string replacenext = tmp[1] + "-";
+                        string replacenext = retemp + "-";
                         string keynext = Regex.Match(stateOriginalArray[(i+1) * 5], @"(?<=\s+)\w+(?=\-)", RegexOptions.IgnoreCase).Value;
                         if (tmp[1] != keynext.ToLower())
                         {
@@ -346,7 +347,7 @@ namespace merlinstatalign
                     }
                     if (i < alignedPhoneList.Count - 2)
                     {
-                        string replace2next = "+" + tmp[1] + "|";
+                        string replace2next = "+" + retemp + "|";
                         string keyn2ext = Regex.Match(stateOriginalArray[(i+2) * 5], @"(?<=\+)\w+(?=\|)", RegexOptions.IgnoreCase).Value;                   
                         if (tmp[1] != keyn2ext.ToLower())
                         {
@@ -361,7 +362,7 @@ namespace merlinstatalign
                     }
                     if(i>1)
                     {
-                        string replace2next = "|" + tmp[1] + "&";
+                        string replace2next = "|" + retemp + "&";
                         string keyn2last = Regex.Match(stateOriginalArray[(i - 2) * 5], @"(?<=\|)\w+(?=\&)", RegexOptions.IgnoreCase).Value;
                         if (tmp[1] != keyn2last.ToLower())
                         {
