@@ -141,8 +141,12 @@ class MinMaxNormalisation(object):
                 for n in xrange(features.shape[1]):
                     if features[m][n]<fea_min_matrix[m][n]:
                         features[m][n]=fea_min_matrix[m][n]
-                    elif features[m][n]>fea_max_matrix[m][n]:
+                    elif features[m][n]>fea_max_matrix[m][n] and (n != 1314 and n != 1317):
                         features[m][n]=fea_max_matrix[m][n]
+					elif features[m][n] > 0.1 * fea_max_matrix[m][n] and n == 1317:
+						features[m][n] = fea_max_matrix[m][n] * 0.1
+					elif features[m][n] > 30 and n == 1314:
+						features[m][n] = 30
 
 
             target_min_matrix = numpy.tile(self.target_min_value, (frame_number, self.feature_dimension))
