@@ -9,3 +9,5 @@ python %current_path%\tool\3_linguisticExtraction\src\linguisticExtraction.py %c
 %current_path%\tool\4_decode\tool\ConvertFormatDecode.exe %current_path%\input\Settings.config
 
 python %current_path%\tool\5_wavGeneration\src\WavGeneration.py %current_path%\input\WavGeneration.conf
+
+xcopy /y %current_path%\intermediate\5_wavGeneration\output\*.wav %current_path%\output
