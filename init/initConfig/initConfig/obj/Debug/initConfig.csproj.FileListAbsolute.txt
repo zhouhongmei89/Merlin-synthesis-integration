@@ -1,0 +1,12 @@
+E:\shihliu\code\MerlinIntegration_git\1st_Version\tool\Merlin-synthesis-integration\init\initConfig\initConfig\bin\Debug\initConfig.exe.config
+E:\shihliu\code\MerlinIntegration_git\1st_Version\tool\Merlin-synthesis-integration\init\initConfig\initConfig\bin\Debug\initConfig.exe
+E:\shihliu\code\MerlinIntegration_git\1st_Version\tool\Merlin-synthesis-integration\init\initConfig\initConfig\bin\Debug\initConfig.pdb
+E:\shihliu\code\MerlinIntegration_git\1st_Version\tool\Merlin-synthesis-integration\init\initConfig\initConfig\obj\Debug\initConfig.csprojResolveAssemblyReference.cache
+E:\shihliu\code\MerlinIntegration_git\1st_Version\tool\Merlin-synthesis-integration\init\initConfig\initConfig\obj\Debug\initConfig.exe
+E:\shihliu\code\MerlinIntegration_git\1st_Version\tool\Merlin-synthesis-integration\init\initConfig\initConfig\obj\Debug\initConfig.pdb
+E:\shihliu\code\MerlinIntegration_git\1st_Version\tool\tool\init\initConfig\initConfig\bin\Debug\initConfig.exe.config
+E:\shihliu\code\MerlinIntegration_git\1st_Version\tool\tool\init\initConfig\initConfig\obj\Debug\initConfig.exe
+E:\shihliu\code\MerlinIntegration_git\1st_Version\tool\tool\init\initConfig\initConfig\obj\Debug\initConfig.pdb
+E:\shihliu\code\MerlinIntegration_git\1st_Version\tool\tool\init\initConfig\initConfig\obj\Debug\initConfig.csprojResolveAssemblyReference.cache
+E:\shihliu\code\MerlinIntegration_git\1st_Version\tool\tool\init\initConfig\initConfig\bin\Debug\initConfig.exe
+E:\shihliu\code\MerlinIntegration_git\1st_Version\tool\tool\init\initConfig\initConfig\bin\Debug\initConfig.pdb

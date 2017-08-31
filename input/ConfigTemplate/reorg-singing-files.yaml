@@ -1,0 +1,14 @@
+singing-data:
+
+  phone-align: ${currentFolder}/input/phone-align
+  ending-silence: 5
+  phone-name-pattern: -(\S+?)\+
+  state-align: ${currentFolder}/intermediate/1_labelGeneration/output 
+  f0: ${currentFolder}/input/f0
+
+merlin-data:
+
+  folder: ${currentFolder}/intermediate/2_reorgFiles
+  state-align: label-state-align
+  lf0: lf0
+
