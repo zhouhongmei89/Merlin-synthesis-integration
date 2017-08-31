@@ -11,8 +11,8 @@ namespace initConfig
     {
         static void Main(string[] args)
         {
-            //string curDirectory = Environment.CurrentDirectory;
-            string curDirectory = @"E:\shihliu\code\MerlinIntegration_git\1st_Version\tool";
+            string curDirectory = Environment.CurrentDirectory;
+            //string curDirectory = @"E:\shihliu\code\MerlinIntegration_git\1st_Version\tool";
             string templateDir = Path.Combine(curDirectory, "input/ConfigTemplate");
             string outputDir = Path.Combine(curDirectory, "input");
 
