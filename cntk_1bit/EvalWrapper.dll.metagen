@@ -1,0 +1,58 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly EvalWrapper, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Class Microsoft.MSR.CNTK.Extensibility.Managed.IEvaluateModelManaged<float>: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    Init(String): PrivateScope, Public, HideBySig
+    LoadModel(String): PrivateScope, Public, HideBySig
+    Evaluate(Dictionary`2, String, Int32): PrivateScope, Public, HideBySig
+    Evaluate(Dictionary`2, Dictionary`2): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class Microsoft.MSR.CNTK.Extensibility.Managed.IEvaluateModelManagedF: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :Microsoft.MSR.CNTK.Extensibility.Managed.IEvaluateModelManaged<float>
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Microsoft.MSR.CNTK.Extensibility.Managed.IEvaluateModelManaged<double>: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    Init(String): PrivateScope, Public, HideBySig
+    LoadModel(String): PrivateScope, Public, HideBySig
+    Evaluate(Dictionary`2, String, Int32): PrivateScope, Public, HideBySig
+    Evaluate(Dictionary`2, Dictionary`2): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class Microsoft.MSR.CNTK.Extensibility.Managed.IEvaluateModelManagedD: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :Microsoft.MSR.CNTK.Extensibility.Managed.IEvaluateModelManaged<double>
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Microsoft.MSR.CNTK.Extensibility.Managed.CNTKException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Exception
+    Void .ctor(System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String NativeCallStack IsConst : Public
+Class Microsoft.MSR.CNTK.Extensibility.Managed.CNTKRuntimeException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :Microsoft.MSR.CNTK.Extensibility.Managed.CNTKException
+    Void .ctor(System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Microsoft.MSR.CNTK.Extensibility.Managed.CNTKLogicErrorException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :Microsoft.MSR.CNTK.Extensibility.Managed.CNTKException
+    Void .ctor(System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Microsoft.MSR.CNTK.Extensibility.Managed.CNTKInvalidArgumentException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :Microsoft.MSR.CNTK.Extensibility.Managed.CNTKException
+    Void .ctor(System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Microsoft.MSR.CNTK.Extensibility.Managed.CNTKBadAllocException: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :Microsoft.MSR.CNTK.Extensibility.Managed.CNTKException
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

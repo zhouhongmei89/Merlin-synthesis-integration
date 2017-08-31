@@ -1,0 +1,62 @@
+load=ndlMacroDefine
+run=ndlCreateNetwork
+
+ndlMacroDefine=[
+    # Macro definitions
+
+    MeanVarNorm(x)
+    {   
+		xMean = Mean(x)
+    	xStdDev = InvStdDev(x)
+    	xNorm=PerDimMeanVarNormalization(x,xMean,xStdDev)
+    }
+ 
+    # Mean Square Error FeedForward
+    MSEBFF(x,r,c,labels)
+    {
+        BFF=BFF(x,r,c)
+        MSE=SquareError(labels,BFF)
+    }
+	
+	# Double Input BFF
+    DBFF(in1,in2,rowCount,colCount1,colCount2)
+    {
+		BFF1 = BFF(in1,rowCount,colCount1)
+		BFF2 = BFF(in2,rowCount,colCount2)
+        P = Plus(BFF1, BFF2)
+    }
+	
+	# Double Input SBFF
+    DSBFF(in1,in2,rowCount,colCount1,colCount2)
+    {
+        DBFF = DBFF(in1,in2,rowCount,colCount1,colCount2)
+        S = Sigmoid(DBFF)
+    }
+	
+	# Speaker Weighted BFF
+    SpkrWtdBFF(in,rowCount,colCount,weight)
+]
+
+ndlCreateNetwork=[
+
+	#define basic i/o
+	featInDim=$InDim$
+	featOutDim=$OutDim$
+	hiddenDim=$HiddenDim$
+	spkrNum=$spkrNum$
+	featIn=Input(featInDim,tag=feature)
+	featOut=Input(featOutDim,tag=label)
+	spkrIndex=Input(spkrNum,tag=feature)
+			       			       
+	 # define network
+	 featNormOut = MeanVarNorm(featOut)
+	 L1 = SBFF(featIn,hiddenDim,featInDim)
+	 L2 = SBFF(L1,hiddenDim,hiddenDim)
+	 L3 = SBFF(L2,hiddenDim,hiddenDim)
+	 L4 = SBFF(L3,hiddenDim,hiddenDim)
+	 NNOut = SpkrWtdBFF(L4,featOutDim,hiddenDim,spkrIndex)
+	 MeanSqErr = SquareError(featNormOut,NNOut,tag=criteria)
+ 	 OutputNodes=PerDimMeanVarDeNormalization(NNOut,featNormOut.xMean,featNormOut.xStdDev)
+	 EvalNodes=(MeanSqErr)
+	 
+]

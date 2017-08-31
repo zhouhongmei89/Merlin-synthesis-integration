@@ -1,0 +1,112 @@
+load=ndlMacroDefine
+run=ndlCreateNetwork
+
+ndlMacroDefine=[
+    # Macro definitions
+
+    MeanVarNorm(x)
+    {   
+	xMean = Mean(x)
+    	xStdDev = InvStdDev(x)
+    	xNorm=PerDimMeanVarNormalization(x,xMean,xStdDev)
+    }
+	
+	# Mean Square Error FeedForward
+    MSEBFF(x,r,c,labels)
+    {
+        BFF=BFF(x,r,c)
+        MSE=SquareError(labels,BFF)
+    }
+   
+
+    LSTMPComponent(input_hidden_Dim, outputDim, cellDim, cellDimT2, cellDimT3, cellDimT4, inputx)
+    {
+	    # declarations of model parameters
+		W_ifgo = Parameter( cellDimT4, input_hidden_Dim, init=uniform, initValueScale=1)
+
+        bo = Parameter(cellDim, init=fixedvalue, value=-1.0);
+        bc = Parameter(cellDim, init=fixedvalue, value=0.0);
+        bi = Parameter(cellDim, init=fixedvalue, value=-1.0);
+        bf = Parameter(cellDim, init=fixedvalue, value=-1.0);
+		
+	    phole_i_c = Parameter(cellDim, init=uniform, initValueScale=1)
+	    phole_f_c = Parameter(cellDim, init=uniform, initValueScale=1)
+	    phole_o_c = Parameter(cellDim, init=uniform, initValueScale=1)
+	
+	    W_r_m = Parameter(outputDim, cellDim, init=uniform, initValueScale=1)
+	
+	    # obtain c_(t-1) and r_(t-1) by delay
+	    r_t_prev = Delay(outputDim, output, delayTime=1)
+        c_t_prev = Delay(cellDim, c_t, delayTime=1)
+	
+	    # F stands for forward propagation
+		inputx_r = RowStack(inputx, r_t_prev)
+	    F_ifgo = Times(W_ifgo, inputx_r)
+        
+		F_i_c = DiagTimes(phole_i_c, c_t_prev)
+		F_f_c = DiagTimes(phole_f_c, c_t_prev)
+		F_o_c = DiagTimes(phole_o_c, c_t)
+		
+		# input and forget gate
+        i_t = Sigmoid(  Plus (Plus( RowSlice(0, cellDim, F_ifgo) , F_i_c), bi) )
+		f_t = Sigmoid(  Plus (Plus( RowSlice(cellDim, cellDim, F_ifgo) , F_f_c), bf) )
+
+		g_t_0 = RowSlice(cellDimT2, cellDim, F_ifgo)
+	    g_t = Tanh(Plus(g_t_0, bc))
+
+		# output gate
+		o_t_0 = RowSlice(cellDimT3, cellDim, F_ifgo)
+		o_t = Sigmoid(  Plus(Plus( o_t_0 , F_o_c), bo) )
+		
+		# memory cell
+		c_t = Plus(ElementTimes(f_t, c_t_prev), ElementTimes(i_t, g_t))
+  
+        # projection layer
+		m_t = ElementTimes(o_t, Tanh(c_t))
+        output = Times(W_r_m, m_t)
+    }
+
+]
+
+
+ndlCreateNetwork=[
+
+	#define basic i/o
+	featInDim=$InDim$
+	featOutDim=$OutDim$
+	# 512
+	hiddenDim=$HiddenDim$
+	# 256
+	projectDim=$ProjectDim$
+	# 512
+	cellDim=$CellDim$ 
+	cellDimT2=1024
+	cellDimT3=1536	
+	cellDimT4=2048 
+	
+	# feature input + projected output:	baseFeatDim + hiddenDim
+	input_hidden_Dim1= 768
+	# projected output + projected output:	hiddenDim + hiddenDim
+	input_hidden_Dim2= 512	
+	
+	featIn=Input(featInDim,tag=feature)
+	featOut=Input(featOutDim,tag=label)
+			       			       
+	 # define network
+	 #featNormIn = MeanVarNorm(featIn)
+	 featNormOut = MeanVarNorm(featOut)
+	 L1 = SBFF(featIn,hiddenDim,featInDim)  
+	 # LSTMP layer 1
+     LSTMPOutput1 = LSTMPComponent(input_hidden_Dim1, projectDim, cellDim, cellDimT2, cellDimT3, cellDimT4, L1) 
+	 # LSTMP layer 2 
+	 LSTMPOutput2 = LSTMPComponent(input_hidden_Dim2, projectDim, cellDim, cellDimT2, cellDimT3, cellDimT4, LSTMPOutput1)
+	 # LSTMP layer 3
+	 LSTMPOutput3 = LSTMPComponent(input_hidden_Dim2, projectDim, cellDim, cellDimT2, cellDimT3, cellDimT4, LSTMPOutput2)
+	 # LSTMP layer 4
+	 LSTMPOutput4 = LSTMPComponent(input_hidden_Dim2, projectDim, cellDim, cellDimT2, cellDimT3, cellDimT4, LSTMPOutput3)
+	 
+	 MeanSqErr = MSEBFF(LSTMPOutput4, featOutDim, ProjectDim, featNormOut,tag=criteria)
+ 	 OutputNodes=PerDimMeanVarDeNormalization(MeanSqErr.BFF.FF.P,featNormOut.xMean,featNormOut.xStdDev)
+	 EvalNodes=(MeanSqErr)
+	 
+]
