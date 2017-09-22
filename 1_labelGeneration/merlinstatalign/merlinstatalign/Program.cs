@@ -80,24 +80,28 @@ namespace merlinstatalign
                 string[] devices = offlinePath.Split('\\');
                 string device = devices[0];
                 string cmdStr = @"FullContextLabelGenerator.exe" + @" -config " + configPath;
-                System.Diagnostics.Process exep = new System.Diagnostics.Process();
-                exep.StartInfo.FileName = @"cmd.exe";
-                //exep.StartInfo.Arguments = cmdStr;
-                exep.StartInfo.CreateNoWindow = false;
-                exep.StartInfo.UseShellExecute = false;
-                exep.StartInfo.RedirectStandardInput = true;
-                exep.StartInfo.RedirectStandardOutput = true;
-                exep.Start();
-                exep.StandardInput.WriteLine(device);
-                exep.StandardInput.WriteLine("cd " + offlinePath);
-                exep.StandardInput.WriteLine(cmdStr + "&exit");
-                exep.StandardInput.AutoFlush = true;
-                //get output message
-                string strOuput = exep.StandardOutput.ReadToEnd();
-                exep.WaitForExit();
-                exep.Close();
-                Console.WriteLine(strOuput);
-                Console.WriteLine("finish");
+                using (System.Diagnostics.Process exep = new System.Diagnostics.Process())
+                {
+                    exep.StartInfo.FileName = @"cmd.exe";
+                    //exep.StartInfo.Arguments = cmdStr;
+                    exep.StartInfo.CreateNoWindow = false;
+                    exep.StartInfo.UseShellExecute = false;
+                    exep.StartInfo.RedirectStandardInput = true;
+                    exep.StartInfo.RedirectStandardOutput = true;
+                    exep.Start();
+                    exep.StandardInput.WriteLine(device);
+                    exep.StandardInput.WriteLine("cd " + offlinePath);
+                    exep.StandardInput.WriteLine(cmdStr + "&exit");
+                    exep.StandardInput.AutoFlush = true;
+                    //get output message
+                    string strOuput = exep.StandardOutput.ReadToEnd();
+                    exep.WaitForExit();
+                   // exep.Close();
+                    Console.WriteLine(strOuput);
+                    Console.WriteLine("finish");
+                }
+                    //System.Diagnostics.Process exep = new System.Diagnostics.Process();
+                
             }
             catch(Exception e)
             {
@@ -304,16 +308,17 @@ namespace merlinstatalign
                 string[] tmp = alignedPhoneList[i].Split(' ', '\t');
                 string match = pattern.Match(stateOriginalArray[i * 5]).Value;
                 string key = Regex.Replace(match, "[-+]", "");
+                string keymatch = @"\-" + key + @"\+";
                 //key = key.ToLower();
                 string retemp = tmp[1] == "sil" ? "SIL":tmp[1];
                 if (tmp[1] != key.ToLower())
-                {
-                    string replace = "-" + retemp + "+";
-                    stateOriginalArray[i * 5] = Regex.Replace(stateOriginalArray[i * 5], match, replace);
-                    stateOriginalArray[i * 5 + 1] = Regex.Replace(stateOriginalArray[i * 5 + 1], match, replace);
-                    stateOriginalArray[i * 5 + 2] = Regex.Replace(stateOriginalArray[i * 5 + 2], match, replace);
-                    stateOriginalArray[i * 5 + 3] = Regex.Replace(stateOriginalArray[i * 5 + 3], match, replace);
-                    stateOriginalArray[i * 5 + 4] = Regex.Replace(stateOriginalArray[i * 5 + 4], match, replace);
+                {                  
+                    string replace = @"-" + retemp + @"+";
+                    stateOriginalArray[i * 5] = Regex.Replace(stateOriginalArray[i * 5], keymatch, replace);
+                    stateOriginalArray[i * 5 + 1] = Regex.Replace(stateOriginalArray[i * 5 + 1], keymatch, replace);
+                    stateOriginalArray[i * 5 + 2] = Regex.Replace(stateOriginalArray[i * 5 + 2], keymatch, replace);
+                    stateOriginalArray[i * 5 + 3] = Regex.Replace(stateOriginalArray[i * 5 + 3], keymatch, replace);
+                    stateOriginalArray[i * 5 + 4] = Regex.Replace(stateOriginalArray[i * 5 + 4], keymatch, replace);
                 }
                 if (i != 0)
                   {
